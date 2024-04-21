@@ -121,6 +121,18 @@
         </div>
         <!-- КОНЕЦ ОДИНАРНОЙ ФОТОГРАФИИ  -->
 
+         <!-- НАЧАЛО ДВОЙНОЙ ФОТОГРАФИИ -->
+         <div class="one-photo-wrapper">
+            <div class="map-title my-3 md:my-10 font-semibold text-2xl md:text-4xl">Фотография точки</div>
+            <div class="two-photo fullfiled">
+                <img src="/img/imgae.png" alt="">
+            </div>
+            <div class="two-photo rejected">
+                <img src="/img/imgae.png" alt="">
+            </div>
+        </div>
+        <!-- КОНЕЦ ДВОЙНОЙ ФОТОГРАФИИ  -->
+
           <!-- НАЧАЛО ЗАГРУЗКИ ФОТОГРАФИИ -->
           <div class="one-photo-wrapper">
             <div class="map-title my-3 md:my-10 font-semibold text-2xl md:text-4xl">Ваша фотография</div>
@@ -134,7 +146,19 @@
          <div class="one-photo-wrapper">
             <div class="map-title my-3 md:my-10 font-semibold text-2xl md:text-4xl">Ваша фотография</div>
             <div class="upload-photo flex flex-col md:flex-row">
-               <a href=""></a>
+                <a class="w-full md:w-1/2 d-block text-center rounded-md py-3 px-5 my-1 bg-green text-white text-xl md:text-xl" href="/upload-photo">Загрузить</a>
+                <form
+                class="my-1 md:mx-2  w-full md:w-1/2 form-change-photo"
+                method="post"
+                enctype="multipart/form-data"
+              >
+                <label class="input-file w-full message-no-input">
+                  <input type="file" name="file"/>
+                  <span class=" input-file-btn my-2 block">Выбрать фото</span>
+                  <!-- <span class="input-file-text">Максимум 10мб</span> -->
+                </label>
+              </form>
+
             </div>
         </div>
         <!-- КОНЕЦ ЗАГРУЗКИ ФОТОГРАФИИ  -->

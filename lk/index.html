@@ -70,7 +70,70 @@
     </div>
     <!-- КОНЕЦ ЛК -->
 
-    <!-- НАЧАЛО ТАБЛИЦЫ -->
+    <!-- НАЧАЛО ТАБЛЦИЫ ЮЗЕРОВ -->
+    <div class="container-md table-title">
+      <div class="flex flex-col justify-between md:flex-row">
+        <div class="text-title md:w-1/2 w-full md:text-3xl text-xl">СПИСОК ПОЛЬЗОВАТЕЛЕЙ</div>
+        <div class="search-title flex flex-col justify-end md:flex-row md:w-1/2 w-full md:text-3xl text-xl">
+          <input type="text" class="text-xl " id="userSearch" placeholder="Введите имя пользователя">
+        </div>
+      </div>
+    </div>
+    
+    <div
+    class="container-md max-h-[600px] my-3 md:my-10 overflow-scroll md:overflow-auto table-wrapper"
+  >
+    <div class="table-custom user-table w-[700px] md:w-full">
+      <div class="table-header bg-gray px-2 py-1">
+        <div id="pointName" class="inline-block w-10/12 font-medium">
+          ИМЯ
+        </div>
+        <div id="pointStatus" class="inline-block py-1 px-3 font-medium">
+          РОЛЬ
+        </div>
+      </div>
+
+      <!-- НАЧАЛО ОДНОЙ СТРОКИ В ТАБЛИЦЕ ТОЧЕК БЕЗ КЛИКАБЕЛЬНОГО СТАТУСА -->
+      <a href="/card-page" class="no-underline w-full">
+        <div class="table-row-custom flex align-items-center px-2 py-1">
+          <div id="pointName" class="w-full font-light px-2 no-underline">
+            оооооувз
+          </div>
+          <div id="pointStatusRow" class="text-green-500 py-1 px-3 text-center no-underline">
+            Закрыта
+          </div>
+        </div>
+      </a>
+       <!-- КОНЕЦ ОДНОЙ СТРОКИ В ТАБЛИЦЕ ТОЧЕК  БЕЗ КЛИКАБЕЛЬНОГО СТАТУСА-->
+
+      <!-- НАЧАЛО ОДНОЙ СТРОКИ В ТАБЛИЦЕ ТОЧЕК  С КЛИКАБЕЛЬНЫМ СТАТУСОМ -->
+      <a href="/card-page" class="no-underline w-full ">
+        <div class="table-row-custom flex align-items-center px-2 py-1">
+          <div id="pointName" class="w-full font-light px-2 no-underline">
+            Точка Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+            Repellat, mollitia.
+          </div>
+           <!-- НАЧАЛО КЛИКАБЕГОГО СТАТУСА -->
+          <a
+            href="/some-url-to-change"
+            class="bg-red rounded"
+            ><div
+              id="pointStatusRow"
+              class="py-1 px-3 text-center no-underline text-red"
+            >
+              Закрыть
+            </div></a
+          >
+          <!-- КОНЕЦ КЛИКАБЕГОГО СТАТУСА -->
+        </div>
+      </a>
+      <!-- КОНЕЦ ОДНОЙ СТРОКИ В ТАБЛИЦЕ ТОЧЕК С КЛИКАБЕЛЬНЫМ СТАТУСОМ -->
+
+    </div>
+  </div>
+    <!-- КОНЕЦ ТАБЛЦИЫ ЮЗЕРОВ -->
+
+    <!-- НАЧАЛО ТАБЛИЦЫ  ТОЧЕК-->
     <div
       class="container-md max-h-[600px] my-3 md:my-10 overflow-scroll md:overflow-auto table-wrapper"
     >
@@ -120,7 +183,7 @@
           </div>
         </a>
         <!-- КОНЕЦ ОДНОЙ СТРОКИ В ТАБЛИЦЕ ТОЧЕК С КЛИКАБЕЛЬНЫМ СТАТУСОМ -->
-        
+
       </div>
     </div>
     <!-- КОНЕЦ ТАБЛИЦЫ -->
