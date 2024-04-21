@@ -6,7 +6,7 @@ const CONSTS = {
 }
 
 
-$(document).ready(() => {
+$(document).ready(async () => {
 
     //данные для точек
 
@@ -76,12 +76,151 @@ $(document).ready(() => {
 
     })
 
-    var $rows = $('.user-table a');
-    $('#userSearch').keyup(function() {
-        var val = $.trim($(this).val()).replace(/ +/g, ' ').toLowerCase();
-        $rows.show().filter(function() {
-            var text = $(this).text().replace(/\s+/g, ' ').toLowerCase();
-            return !~text.indexOf(val);
-        }).hide();
-    });
+    $('#searchUsersForm').off('submit').on('submit', (e) => {
+        e.preventDefault();
+        let search = $('#userSearch').val();
+        let mockData = `<div class="table-header bg-gray px-2 py-1">
+        <div id="pointName" class="inline-block w-10/12 font-medium">
+          ИМЯ
+        </div>
+        <div id="pointStatus" class="inline-block py-1 px-3 font-medium">
+          РОЛЬ
+        </div>
+      </div>`;
+
+        fetch('/api/v1/user/name/' + search).then(res => res.text())
+        .then((data) => {
+            data = JSON.parse(data)
+            data.map((item) => {
+                mockData += `
+                <a href="/card-page" class="no-underline w-full">
+                <div class="table-row-custom flex align-items-center px-2 py-1">
+                  <div id="pointName" class="w-full font-light px-2 no-underline">
+                    ${item.name}
+                  </div>
+                  <div id="pointStatusRow" class="text-green-500 py-1 px-3 text-center no-underline">
+                   ${item.role}
+                  </div>
+                </div>
+              </a>
+                `
+            })
+            $('user-table').html(mockData)
+        })
+    })
+    $('#searchPointsForm').on('submit', (e) => {
+        e.preventDefault();
+        let selected = $('#userRole>option:selected').val();
+        console.log(selected)
+        if (!selected) {
+            alert('Выберете роль!')
+        }
+        let mockData = `<div class="table-header bg-gray px-2 py-1">
+        <div id="pointName" class="inline-block w-10/12 font-medium">
+          ТОЧКА
+        </div>
+        <div id="pointStatus" class="inline-block py-1 px-3 font-medium">
+          СТАТУС
+        </div>
+      </div>`;
+
+        fetch('api/v1/points/admin/' + selected).then(res => res.text())
+        .then((data) => {
+            data = JSON.parse(data)
+            data.map((item) => {
+                mockData += `
+                <a href="/card-page" class="no-underline w-full">
+                <div class="table-row-custom flex align-items-center px-2 py-1">
+                  <div id="pointName" class="w-full font-light px-2 no-underline">
+                    ${item.name}
+                  </div>
+                  <div id="pointStatusRow" class="text-green-500 py-1 px-3 text-center no-underline">
+                   ${item.role}
+                  </div>
+                </div>
+              </a>
+                `
+            })
+            $('.table-points').html(mockData)
+        })
+    })
+    $(document).on('click',(e) => {
+        let link = e.target.classList.value.includes('user-profile') ? e.target.closest('a').attributes.href.value : null;
+        console.log(link)
+        // console.log(e.target.classList.value)
+        if (link) {
+            let currentLinkID = e.target.closest('a').attributes.id.value;
+            e.preventDefault();
+            console.log(link)
+            let options;
+            let innerUserData = '';
+            fetch('api/v1/user/role')
+            .then(res => res.text())
+            .then(res => {
+                let dataForSelect;
+                let fOption = res;
+                options = `<option value="${res}">${res}</option>`
+                fetch('/api/v1/roles')
+                    .then(response => response.json())
+                    .then(response => {
+                        response.map((item) => {
+                            dataForSelect += item === fOption ? '' : `<option value="${item}">${item}</option>`
+                        })
+                        options += dataForSelect;
+                    })
+            })
+            $('#userRole').html(options);
+            fetch('/api/v1/personal-data/' + currentLinkID).then(res => res.json())
+            .then((res) => {
+                
+                    innerUserData += `
+                    <div class="form-row">
+                        <label for="inputName">Логин</label>
+                        <span class="my-1 block w-full message-no-input">${res.name}</span>
+                    </div>
+                     <div class="form-row">
+                        <label for="inputName">Фамилия</label>
+                        <span class="my-1 block w-full message-no-input">${res.lastName}</span>
+                    </div>
+                     <div class="form-row">
+                        <label for="inputName">Имя</label>
+                        <span class="my-1 block w-full message-no-input">${res.firstName}</span>
+                    </div>
+                    <div class="form-row">
+                    <label for="inputName">Отчество</label>
+                    <span class="my-1 block w-full message-no-input">${res.middleName}</span>
+                    </div>
+                    `               
+            })
+            $('#userDataForAdmin').html(innerUserData);
+            $(`${link}`).addClass('d-block');
+        }
+        if(e.target.classList.value.includes('modal')) {
+            // let currentID = e.target.attributes.id.value
+            // let options;
+            // if(currentID === 'changeUserProfile') {
+            //     // fetch('api/v1/user/role')
+            //     // .then(res => res.text())
+            //     // .then(res => {
+            //     //     let dataForSelect;
+            //     //     let fOption = res;
+            //     //     options = `<option value="${res}">${res}</option>`
+            //     //     fetch('/api/v1/roles')
+            //     //         .then(response => response.json())
+            //     //         .then(response => {
+            //     //             response.map((item) => {
+            //     //                 dataForSelect += item === fOption ? '' : `<option value="${item}">${item}</option>`
+            //     //             })
+            //     //             options += dataForSelect;
+            //     //         })
+            //     // })
+            //     // $('#userRole').html(options);
+            // }
+            // $(`#${currentID}`).addClass('d-block');
+        }
+        if(e.target.classList.value.includes('close__X')) {
+            let currentModal = e.target.closest('.modal').attributes.id.value;
+            $(`#${currentModal}`).removeClass('d-block');
+        }
+    })   
 })

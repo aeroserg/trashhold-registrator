@@ -218,3 +218,50 @@ select {
 
 }
 
+#userSearch {
+    border: none;
+    padding: 0;
+}
+input[type="submit"] {
+    border: none;
+    padding: 0;
+}
+
+.modal {
+    background-color: #00000069;
+    backdrop-filter: blur(10px);
+}
+.modal-body {
+    position: relative;
+    margin: 0 auto;
+    margin-top: 5rem;
+    width: 50%;
+    background-color: #ffffff;
+    border-radius: 1rem;
+    padding: 1rem;
+}
+
+.close__X {
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    top: -2rem;
+    right: -2rem;
+}
+.X-left {
+    position: absolute;
+    display: inline-block;
+    width: 30px;
+    height: 5px;
+    background-color: #cecece;
+    transform: rotate(45deg);
+}
+.X-right {
+    position: absolute;
+    display: inline-block;
+    width: 30px;
+    height: 5px;
+    background-color: #cecece;
+    transform: rotate(-45deg);
+}
