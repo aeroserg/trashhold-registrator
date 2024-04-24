@@ -43,9 +43,11 @@
 }
 #map {
     /* поменял margin */
-    margin: 1rem .5rem; 
-    max-height: 500px!important;
-    max-width: 100%!important;
+    margin: 1rem 0;
+    max-height: 500px;
+    max-width: 100%;
+    width: 100%;
+    height: 400px;
 }
 #map iframe {
     width: 100%!important;
@@ -78,6 +80,14 @@
 	padding: 0 10px;
 	line-height: 40px;
 	display: inline-block;
+}
+.form-row input[type=file] {
+    position: absolute;
+	z-index: -1;
+	opacity: 0;
+	display: block;
+	width: 0;
+	height: 0;
 }
 .form-change-photo {
     text-align: center;
@@ -156,8 +166,6 @@ select {
 
 
 @media screen and (max-width: 996.9px) {
-    
-   
 
     .form-change-photo img {
         width: 120px;
@@ -254,7 +262,7 @@ input[type="submit"] {
     border-radius: .3rem;
 }
 
-.login-form label, input:invalid~label,textarea~label {
+.login-form label, input:not([type="file"]):invalid~label,textarea~label {
     position: absolute;
     top: 25%;
     left: 1rem;
@@ -264,18 +272,25 @@ input[type="submit"] {
     position: relative;
 }
 textarea:invalid~label {
+    position: absolute;
     top: .5rem;
+    left: 1rem;
 }
 textarea:valid ~label, textarea:focus-visible~label,textarea:focus~label {
+    position: absolute;
+    left: 1rem;
     top: -1.25rem;
     font-size: smaller;
 }
 
-input:focus~label, input:focus-visible~label, input:focus-within~label,input:valid ~label {
-    top: -50%;
+input:not([type="file"]):focus~label, input:not([type="file"]):focus-visible~label, input:not([type="file"]):focus-within~label,input:not([type="file"]):valid ~label {
+    position: absolute;
+    left: 1rem;
+    top: -45%;
     font-size: smaller;
 }
-input:valid, textarea:valid  {
+
+input:not([type="file"]):valid, textarea:valid  {
     border: 1px solid #20c997;
     outline:  1px solid #20c997;
 }
@@ -285,7 +300,8 @@ input:valid, textarea:valid  {
         --mobile-icon-width-400: 28px;
     }
     header {
-        position: absolute;
+        position: fixed;
+        z-index: 10000;
         bottom: 0!important;
         left: 0;
         margin-bottom: 0!important;
@@ -361,4 +377,9 @@ input:valid, textarea:valid  {
     header .menu li a{
         padding: 0.85rem;
     }
+}
+
+#pointCardFile {
+    padding-top: 2.8rem;
+    padding-bottom: 2.8rem;
 }
