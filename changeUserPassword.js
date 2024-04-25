@@ -1,25 +1,17 @@
 $(document).ready(() => {
     const changePasswordButton = $('#changePassword');
-    const saveChangedUserDataForm = $('#saveChangedUserData');
+    const saveChangedUserDataForm = $('#saveChangedUserPassword');
 
     const userName = $('#userLoginForm').val();
-    // const userPassword = $('#userPasswordForm').val();
-    const userFirstName = $('#userFirstNameForm').val();
-    const userLastName = $('#userLastNameForm').val();
-    const userPatronymicName = $('#userPatronymicName').val();
+    const userFirstPass = $('#userFirstPassword').val();
+    const userSecondPass = $('#userSecondPassword').val();
+   
     saveChangedUserDataForm.on('submit', (e) =>{
         e.preventDefault()
-        let dataToPost = JSON.stringify({
-            name: userName,
-            lastName: userLastName,
-            firstName: userFirstName,
-            middleName: userPatronymicName
-        })
-        // fetch('api/v1/...', )....
-        
-    })
-    changePasswordButton.on('click', (e) => {
-        e.preventDefault();
-        // location.href = '/jwkcfbjvevbfvubeuvbev что-то там надо вставить линк'
+        if(userFirstPass !== userSecondPass) {
+            alert('Пароли не совпадают!')
+            return;
+        }
+        // fetch(...)
     })
 })
