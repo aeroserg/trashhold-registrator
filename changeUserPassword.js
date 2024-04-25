@@ -7,7 +7,8 @@ $(document).ready(() => {
     const userFirstName = $('#userFirstNameForm').val();
     const userLastName = $('#userLastNameForm').val();
     const userPatronymicName = $('#userPatronymicName').val();
-    saveChangedUserDataForm.on('submit', () =>{
+    saveChangedUserDataForm.on('submit', (e) =>{
+        e.preventDefault()
         let dataToPost = JSON.stringify({
             name: userName,
             lastName: userLastName,
