@@ -383,3 +383,11 @@ input:not([type="file"]):valid, textarea:valid  {
     padding-top: 2.8rem;
     padding-bottom: 2.8rem;
 }
+input[type="date"] {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 0;
+    opacity: 0;
+}
