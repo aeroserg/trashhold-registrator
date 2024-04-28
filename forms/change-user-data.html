@@ -39,7 +39,17 @@
     <!--КОНЕЦ МЕНЮ -->
     <div class="container-md my-1.5 md:my-10 ">
         <form id="saveChangedUserData" method="post" class="login-form md:w-2/3 xl:w-1/2 md:max-w-[600px] w-full mx-auto md:my-10 my-3" enctype="application/x-www-form-urlencoded">
-            <div class="md:text-4xl text-2xl mb-5 text-center">Ваши данные</div>
+            <div class="relative form-title-wrapper mb-5 flex text-left align-items-center">
+              <div class="md:text-4xl text-2xl w-2/3">Ваши данные</div>
+              <label class="!static  dropdown-item input-file w-1/3 focus:bg-white focus-within:bg-white focus-visible:bg-white !rounded-[50%] justify-end">
+                <input type="file" name="file" />
+                <img class="w-full aspect-square !rounded-[50%]" id="userPhoto" src="/img/imgae.png" alt=""/>
+                <!-- <span class="input-file-text">Максимум 10мб</span> -->
+              </label>
+              <!-- <a class="dropdown-item w-1/3 flex justify-end" href="/profile"
+              ></a> -->
+            </div>
+
             <div class="form-row my-2">
                   <!-- паттерн можно убрать  , в cлуаче pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,7}$" он для email, можно поставить на любую длинну pattern="^.{1,150}$"-->
                 <input class="w-full block" type="text" name="userLoginForm" id="userLoginForm" required>
